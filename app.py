@@ -13,11 +13,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
 
-#tell sqlalchemy to create a table, use flask-decorator.
-@app.before_first_request
-def create_table():#before the first request run, it wil run this, which creates this file db.create_all, unless they exist aleady.
-    db.create_all()
-
 jwt = JWT(app, authenticate, identity) #authenticate
 
 api.add_resource(Store, '/store/<string:name>')
